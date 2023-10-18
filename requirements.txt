@@ -1,0 +1,8 @@
+pytest
+allure-pytest
+pytest-html
+requests
+ConfigParser
+logger
+pytest-rerunfailures
+openpyxl
