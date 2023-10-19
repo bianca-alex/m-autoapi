@@ -4,9 +4,12 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from utils.loader_config import Config
+
 # import ssl
 from utils.logger import logger
 import mimetypes
+import os
+from common.settings import get_runtime_path
 
 class EmailSender:
     def __init__(self, recipient_email, subject, body):
@@ -16,9 +19,11 @@ class EmailSender:
         self.recipient_email = recipient_email
         self.subject = subject
         self.body = body
+        self.msg = MIMEMultipart()  # 创建 MIMEMultipart 对象
 
     def attach_file(self, file_path):
         # 创建一个MIMEApplication对象
+        file_path = os.path.join(get_runtime_path(), file_path)
         with open(file_path, 'rb') as file:
             attachment = MIMEApplication(file.read(), _subtype=self.get_mime_subtype(file_path))  # 根据文件类型修改 _subtype
 

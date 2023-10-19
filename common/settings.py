@@ -18,6 +18,9 @@ _report_path = project_path + os.sep + "reports"
 
 _data_path = project_path + os.sep + "datas"
 
+_runtime_path = project_path + os.sep + "runtime"
+
+
 # 返回日志目录
 def get_log_path():
     return _log_path
@@ -33,6 +36,10 @@ def get_config_path():
 # 返回config目录
 def get_data_path():
     return _data_path
+
+# 返回日志目录
+def get_runtime_path():
+    return _runtime_path
 
 if __name__ == "__main__":
     print(get_log_path())

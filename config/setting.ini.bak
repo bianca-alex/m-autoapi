@@ -1,6 +1,6 @@
 [Test]
 # 是否生成报告 True False
-report=False
+report=True
 # 是否重试
 try_flag=False
 
@@ -14,5 +14,5 @@ try_time=5
 [Email]
 smtp=smtp.office365.com
 port=587
-sender_email=${email}
-sender_password=${password}
+sender_email=
+sender_password=
