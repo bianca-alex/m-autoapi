@@ -22,7 +22,7 @@ class TestExample:
 
     @pytest.mark.skip(reason="Test")
     def test_sendMail(self):
-        SendEmailReport('all', 'test', 'test', 1) # 1代表发送附件
+        SendEmailReport('all', 'test', 'test', True) # True代表发送附件
 
 if __name__ == "__main__":
     pytest.main(['-o', 'reruns=3'])
