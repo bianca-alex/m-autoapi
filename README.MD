@@ -4,29 +4,39 @@ pip install -r requirements.txt
 python 3.9.16
 ### 框架说明
 ```
-├── bootstrap.py // 运行设置
-├── common  // 自定义方法
+.
+├── bootstrap.py
+├── common
+│   ├── compress.py
+│   ├── helper.py
 │   ├── __init__.py
+│   ├── send_email_report.py
 │   └── settings.py
-├── config // 配置
-│   └── setting.ini
-├── datas // 测试数据
-│   └── module 
-├── logs // log
-├── main.py // 入口文件
-├── reports // 报告生成
+├── config
+│   ├── setting.ini
+│   ├── setting.ini.bak
+│   └── site.ini
+├── datas
+├── logs
+├── main.py
+├── README.MD
+├── reports
 ├── requirements.txt
-├── tests // 测试用例
+├── runtime
+├── tests
 │   └── module
 │       ├── conftest.py
 │       ├── __init__.py
 │       └── test_example.py
-└── utils // 工具类
+└── utils
     ├── assertaction.py
     ├── db.py
     ├── http_client.py
     ├── __init__.py
     ├── loader_config.py
-    ├── loader_data.py
-    └── logger.py
+    ├── loader_excel.py
+    ├── loader_yaml.py
+    ├── logger.py
+    ├── mock.py
+    └── send_mail.py
 ```
