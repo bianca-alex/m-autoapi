@@ -22,7 +22,7 @@ class Config:
         cf = self.config
         try:
             data = cf.get(node, key)
-            logger.info('获取配置文件的值，node：{},key：{}, data：{}'.format(node, key, data))
+            #logger.info('获取配置文件的值，node：{},key：{}, data：{}'.format(node, key, data))
         except Exception:
             logger.exception('没有获取到对应的值，node：{},key：{}'.format(node, key))
             data = None
