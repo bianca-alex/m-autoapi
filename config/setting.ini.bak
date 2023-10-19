@@ -1,6 +1,6 @@
 [Test]
 # 是否生成报告 True False
-report=True
+report=False
 # 是否重试
 try_flag=False
 
@@ -16,3 +16,4 @@ smtp=smtp.office365.com
 port=587
 sender_email=
 sender_password=
+recipient_email=

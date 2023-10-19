@@ -1,4 +1,5 @@
 import os
+import sys
 import zipfile
 from common.settings import get_runtime_path
 from common.settings import get_report_path

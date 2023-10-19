@@ -21,15 +21,15 @@ class EmailSender:
         self.body = body
         self.msg = MIMEMultipart()  # 创建 MIMEMultipart 对象
 
-    def attach_file(self, file_path):
+    def attach_file(self, file_name):
         # 创建一个MIMEApplication对象
-        file_path = os.path.join(get_runtime_path(), file_path)
+        file_path = os.path.join(get_runtime_path(), file_name)
         with open(file_path, 'rb') as file:
             attachment = MIMEApplication(file.read(), _subtype=self.get_mime_subtype(file_path))  # 根据文件类型修改 _subtype
 
         # 添加附件的标题
-        attachment.add_header('Content-Disposition', 'attachment', filename=file_path)
-
+        attachment.add_header('Content-Disposition', 'attachment', filename=file_name)
+        logger.info("附件-" + file_name)
         # 将附件添加到邮件
         self.msg.attach(attachment)
 
