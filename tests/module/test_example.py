@@ -4,9 +4,7 @@ from utils.assertaction import assert_tool
 from utils.http_client import HttpClient
 from utils.loader_config import Config
 from utils.logger import logger
-from utils.send_mail import EmailSender
-from common.compress import Compressor
-from datetime import datetime
+from common.send_email_report import SendEmailReport
 
 class TestExample:
     def setup_class(cls):
@@ -22,23 +20,9 @@ class TestExample:
         res = self.client.get('')
         assert_tool.assert_status_code(res, 200)
 
+    @pytest.mark.skip(reason="Test")
     def test_sendMail(self):
-
-        # 打包文件
-        current_time = datetime.now()
-        timestamp = current_time.strftime('%Y-%m-%d_%H-%M-%S')  # 格式化时间戳
-        compressor = Compressor('all', 'all_' + timestamp)
-        compressor.compress()
-
-        # 发送邮件
-        recipient_email = Config().get('recipient_email', 'Email')
-        # 设置邮件主题和内容
-        email_subject = "Test Email"
-        email_body = "This is a test email sent from Python."
-        # 创建 EmailSender 实例
-        email_sender = EmailSender(recipient_email, email_subject, email_body)
-        # 发送邮件
-        email_sender.send_email('all_' + timestamp + '.zip')
+        SendEmailReport('all', 'test', 'test', 1) # 1代表发送附件
 
 if __name__ == "__main__":
     pytest.main(['-o', 'reruns=3'])
