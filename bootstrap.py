@@ -5,13 +5,13 @@ from utils.loader_config import config
 
 class BootStrap:
     @classmethod
-    def run(cls):
+    def run(cls, report_engine='html'):
         # 获取是否生成报告的配置
         generate_report = config.get("report") == 'True'
 
         # 初始化默认参数
         argv = ['./tests/']
-        report_path = './reports/all/index.html'
+        report_path = './reports/all/'
 
         # 检查是否启用重试机制
         try_flag = config.get("try_flag")
@@ -25,16 +25,21 @@ class BootStrap:
         if len(sys.argv) == 2:
             module_name = sys.argv[1]
             argv = ['./tests/' + module_name + '/']
-            report_path = f'./reports/{module_name}/index.html'
+            report_path = f'./reports/{module_name}/'
 
         if len(sys.argv) == 3:
             module_name, file_name = sys.argv[1], sys.argv[2]
             argv = ['./tests/' + module_name + '/' + file_name + '.py']
-            report_path = f'./reports/{module_name}_{file_name}/index.html'
+            report_path = f'./reports/{module_name}_{file_name}/'
 
         # 生成报告参数
-        report_option = ['--html=' + report_path] if generate_report else []
-
+        if report_engine == 'html':
+            report_option = ['--html=' + report_path + 'index.html'] if generate_report else []
+        elif report_engine == 'allure':
+            report_option = ['--alluredir=' + report_path] if generate_report else []
+        else:
+            sys.exit("未支持的报告引擎！！！")
+        
         # 执行测试用例
         pytest.main(argv + report_option)
 

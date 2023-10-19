@@ -2,4 +2,4 @@
 from bootstrap import BootStrap
 
 
-BootStrap.run()
+BootStrap.run('html')
