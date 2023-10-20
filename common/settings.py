@@ -33,11 +33,11 @@ def get_report_path():
 def get_config_path():
     return _conf_path
 
-# 返回config目录
+# 返回数据目录
 def get_data_path():
     return _data_path
 
-# 返回日志目录
+# 返回临时运行目录
 def get_runtime_path():
     return _runtime_path
 

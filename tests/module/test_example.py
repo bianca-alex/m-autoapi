@@ -1,16 +1,22 @@
 
 import pytest
+import os
 from utils.assertaction import assert_tool
 from utils.http_client import HttpClient
 from utils.loader_config import Config
+from utils.loader_excel import load_test_case
 from utils.logger import logger
 from common.send_email_report import SendEmailReport
+from common.settings import get_data_path
+
+case_list = load_test_case(os.path.join(get_data_path(), 'test_cases.xlsx'))
 
 class TestExample:
     def setup_class(cls):
         logger.info("***** 开始执行测试用例 *****")
         cls.site = Config('site').get('baidu', 'Site')
         cls.client = HttpClient(cls.site)
+        # module_login()
 
     def teardown_class(cls):
         logger.info("***** 测试用例执行结束 *****")
@@ -23,6 +29,19 @@ class TestExample:
     @pytest.mark.skip(reason="Test")
     def test_sendMail(self):
         SendEmailReport('all', 'test', 'test', True) # True代表发送附件
+    
+    # 逻辑书写
+    def execute_test_case(self, test_case):
+        # 执行测试用例的代码逻辑
+        # 可以使用test_case字典中的数据进行请求发送和预期结果验证
+        rsp = test_case['预期结果']
+        res = self.client.excelTemple(test_case)
+        assert_tool.assert_status_code(res, 404)
+
+    @pytest.mark.parametrize('test_case', case_list)
+    def test_execute_test_case(self, test_case):
+        self.execute_test_case(test_case)
+
 
 if __name__ == "__main__":
     pytest.main(['-o', 'reruns=3'])
