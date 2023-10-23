@@ -13,13 +13,14 @@ from .conftest import module_login
 case_list = load_test_case(os.path.join(get_data_path(), 'test_cases.xlsx'))
 
 class TestExample:
-    def setup_class(cls):
+    def setup_class(self):
         logger.info("***** 开始执行测试用例 *****")
-        cls.site = Config('site').get('baidu', 'Site')
-        cls.client = HttpClient(cls.site)
+        self.site = Config('site').get('baidu', 'Site')
+        self.client = HttpClient(self.site)
         # module_login()
 
-    def teardown_class(cls):
+    def teardown_class(self):
+        # self.sendMail()
         logger.info("***** 测试用例执行结束 *****")
 
     def test_example(self):
@@ -27,8 +28,8 @@ class TestExample:
         res = self.client.get('')
         assert_tool.assert_status_code(res, 200)
 
-    @pytest.mark.skip(reason="Test")
-    def test_sendMail(self):
+    # @pytest.mark.skip(reason="Test")
+    def sendMail():
         SendEmailReport('all', 'test', 'test', True) # True代表发送附件
     
     # 逻辑书写
@@ -44,7 +45,7 @@ class TestExample:
         assert_tool.assert_status_code(res, 404)
 
 
-    @pytest.mark.parametrize('test_case', case_list, ids=lambda test_case: test_case['用例标题'])
+    @pytest.mark.parametrize('test_case', case_list, ids=lambda test_case: test_case['用例编号'])
     def test_execute_test_case(self, test_case):
         self.execute_test_case(test_case)
 
