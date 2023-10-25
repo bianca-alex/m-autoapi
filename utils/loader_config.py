@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 from configparser import ConfigParser
 from common.settings import get_config_path
 from utils.logger import logger

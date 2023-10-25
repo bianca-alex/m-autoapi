@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 根据var，逐层获取json格式的值
 def parse_relation(var, data):
     # 判断变量var是否存在

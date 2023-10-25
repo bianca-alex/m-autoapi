@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 from common.compress import Compressor
 from utils.loader_config import Config

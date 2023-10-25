@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import pytest
 import os
 from utils.assertaction import assert_tool

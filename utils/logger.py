@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 import logging
 from common.settings import get_log_path
 import datetime

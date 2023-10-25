@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import openpyxl
 
 def write_test_cases_to_excel(test_cases):
