@@ -1,6 +1,7 @@
 # coding=utf-8
 import pytest
 import sys
+import os
 from utils.loader_config import config
 
 class BootStrap:
@@ -36,11 +37,16 @@ class BootStrap:
         if report_engine == 'html':
             report_option = ['--html=' + report_path + 'index.html'] if generate_report else []
         elif report_engine == 'allure':
-            report_option = ['--alluredir=' + report_path] if generate_report else []
+            report_option = ['--clean-alluredir', '--alluredir=' + report_path] if generate_report else []
         else:
             sys.exit("未支持的报告引擎！！！")
         
         # 执行测试用例
         pytest.main(argv + report_option)
+
+        generate_allure_open = config.get("allure_open") == 'True'
+
+        if generate_allure_open and generate_report:
+            os.system("allure serve " + report_path)
 
 # 在其他地方调用 BootStrap.run() 即可执行测试用例，并根据配置生成报告和应用重试机制。

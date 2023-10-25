@@ -4,6 +4,9 @@ report=False
 # 是否重试
 try_flag=False
 
+# 客户端allure时 设置此值为true时可自动打开浏览器
+allure_open=False
+
 [Unit]
 # 重试次数
 try_num=2
