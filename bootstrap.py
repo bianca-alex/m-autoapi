@@ -23,17 +23,19 @@ class BootStrap:
             # 配置 pytest 命令行选项以包括重试次数和重试间隔
             argv.extend(['--reruns', str(try_num), '--reruns-delay', str(try_time)])
 
+        # 执行单模块测试用例
         if len(sys.argv) == 2:
             module_name = sys.argv[1]
             argv = ['./tests/' + module_name + '/']
             report_path = f'./reports/{module_name}/'
 
+        # 执行单文件测试用例
         if len(sys.argv) == 3:
             module_name, file_name = sys.argv[1], sys.argv[2]
             argv = ['./tests/' + module_name + '/' + file_name + '.py']
             report_path = f'./reports/{module_name}_{file_name}/'
 
-        # 生成报告参数
+        # 是否生成测试报告、报告格式
         if report_engine == 'html':
             report_option = ['--html=' + report_path + 'index.html'] if generate_report else []
         elif report_engine == 'allure':
